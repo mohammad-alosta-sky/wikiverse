@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
+import apiURL from '../api';
+// import {pageContent} from "./App"
 
-export const Page = (props) => {
+export const Page = ({page, pageViewHandler}) => {
+
 
   return <>
-    <h3>{props.page.title}</h3>
+    <h3 onClick={() => pageViewHandler(page.slug)}>{page.title}</h3>
   </>
 } 
 	
