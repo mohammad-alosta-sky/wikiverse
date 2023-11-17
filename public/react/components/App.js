@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { PagesList } from './PagesList';
+import { ViewContent } from './ViewContent';
 
 // import and prepend the api url to any fetch calls
 import apiURL from '../api';
@@ -28,7 +29,6 @@ export const App = () => {
 		
 		const response = await fetch(`${apiURL}/wiki/${slug}`)
 		const data = await response.json()
-		console.log(data)
 		setPageContent(data)
 		
 		
@@ -46,14 +46,8 @@ export const App = () => {
 			<h2>An interesting 📚</h2>
 			{/* {pageView ? <pageView /> : PageList} */}
 			{pageContent?
-			<>
-			 <h3>{pageContent.title}</h3> 
-			 <h4>{pageContent.author.name}</h4>
-			 <h4>{pageContent.author.email}</h4>
-			 <p>{pageContent.content}</p>
-			 
-			 </>
-			 : <PagesList pages={pages} pageViewHandler={pageViewHandler} />}
+				<ViewContent pageContent={pageContent} setPageContent={setPageContent} />
+				: <PagesList pages={pages} pageViewHandler={pageViewHandler} />}
 			
 		</main>
 	)
